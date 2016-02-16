@@ -1,0 +1,29 @@
+{
+  "name": "smart-task-manager",
+  "version": "1.0.0",
+  "description": "Smart task manager with supporting CRUD operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/V11/smart-task-manager.git"
+  },
+  "keywords": [
+    "task"
+  ],
+  "author": "kurpav",
+  "license": "no license",
+  "bugs": {
+    "url": "https://github.com/V11/smart-task-manager/issues"
+  },
+  "homepage": "https://github.com/V11/smart-task-manager",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0"
+  }
+}
