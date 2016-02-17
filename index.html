@@ -7,14 +7,232 @@
     <title>Smart task manager</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css">
+    <link href="app/src/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
     <link rel="stylesheet" type="text/css" href="app/src/css/index.css">
 
 </head>
 <body>
 <div class="container">
-    <div class="row"></div>
+    <header class="row header">
+        <h1>Smart task manager</h1>
+        <button type="button" class="btn btn-primary btn-lg new-task" data-toggle="modal"
+                data-target=".new-task-modal">
+            <span class="glyphicon glyphicon-plus
+"></span> Create task
+        </button>
+    </header>
+    <section class="row content">
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Created at</th>
+                <th>Deadline</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="task warning">
+                <td>
+                    <a class="cell" role="button" data-toggle="collapse" href="#collapseExample"
+                       aria-expanded="false"
+                       aria-controls="collapseExample">
+                        <span>Feed the dog</span>
+                    </a>
+                </td>
+                <th>
+                    <span class="glyphicon glyphicon-circle-arrow-up"></span>
+                    High
+                </th>
+                <th>Pending</th>
+                <th>Mon 18.01.15</th>
+                <th>Tue 4.06.14</th>
+                <td>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-play-circle"></span>
+                        Start
+                    </button>
+                    <button class="btn btn-default hidden">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Complete
+                    </button>
+                    <button class="btn btn-default hidden">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                        Reopen
+                    </button>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        Edit
+                    </button>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Remove
+                    </button>
+                </td>
+            </tr>
+            <tr class="task-content collapse" id="collapseExample">
+                <td colspan="6" class="well">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac pellentesque ipsum. Aliquam dictum
+                    faucibus urna, eget dictum purus ultricies at. Donec nec aliquam dui. Quisque quis turpis elementum
+                    turpis imperdiet mollis. Ut vitae tellus nec sem facilisis lacinia. Vestibulum aliquet et purus at
+                    volutpat. Morbi vulputate nisi sem, eu facilisis est elementum a. Vivamus laoreet mauris et sem
+                    iaculis, ac rhoncus ligula blandit. Aenean mattis dolor quis faucibus imperdiet. Ut finibus dolor
+                    mi, ac gravida quam ornare sit amet.
+
+                    Duis lacinia, massa at cursus tempus, nulla justo ornare felis, eget lobortis augue ipsum vitae dui.
+                    Etiam hendrerit egestas ante, sed fringilla nisi. Integer et dui faucibus, rhoncus dolor at, auctor
+                    ante. Aenean cursus ligula non ante condimentum semper. Donec tincidunt ante sed vulputate
+                    vulputate. Morbi eget sodales felis. Vestibulum ante ipsum primis in faucibus orci luctus et
+                    ultrices posuere cubilia Curae; Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+                    posuere cubilia Curae; Maecenas condimentum tellus nec ex malesuada eleifend. Nulla pharetra eu
+                    lacus eu mollis. Suspendisse nec lacinia lectus, non porta purus. Duis accumsan elit in elementum
+                    condimentum. Morbi tellus turpis, rutrum quis sodales in, laoreet at arcu. Praesent sollicitudin leo
+                    eros, efficitur pharetra ipsum molestie accumsan. Cras non metus id justo rutrum aliquam et ac
+                    neque. Aliquam dapibus gravida consectetur.
+                </td>
+            </tr>
+            <tr class="task active">
+                <td>
+                    <a class="cell" role="button" data-toggle="collapse" href="#collapseExample1"
+                       aria-expanded="false"
+                       aria-controls="collapseExample">
+                        <span>Do house work</span>
+                    </a>
+                </td>
+                <th>
+                    <span class="glyphicon glyphicon-circle-arrow-right"></span>
+                    Medium
+                </th>
+                <th>Opened</th>
+                <th>Tue 4.06.14</th>
+                <th>Tue 4.06.14</th>
+                <td>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-play-circle"></span>
+                        Start
+                    </button>
+                    <button class="btn btn-default hidden">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Complete
+                    </button>
+                    <button class="btn btn-default hidden">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                        Reopen
+                    </button>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        Edit
+                    </button>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Remove
+                    </button>
+                </td>
+            </tr>
+            <tr class="collapse task-content" id="collapseExample1">
+                <td colspan="6" class="well">
+                    Some description
+                </td>
+            </tr>
+            <tr class="task success">
+                <td>
+                    <a class="cell" role="button" data-toggle="collapse" href="#collapseExample2"
+                       aria-expanded="false"
+                       aria-controls="collapseExample">
+                        <span>Do house work</span>
+                    </a>
+                </td>
+                <th>
+                    <span class="glyphicon glyphicon-circle-arrow-down"></span>
+                    Low
+                </th>
+                <th>Closed</th>
+                <th>Tue 4.06.14</th>
+                <th>Tue 4.06.14</th>
+                <td>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-play-circle"></span>
+                        Start
+                    </button>
+                    <button class="btn btn-default hidden">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        Complete
+                    </button>
+                    <button class="btn btn-default hidden">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                        Reopen
+                    </button>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        Edit
+                    </button>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Remove
+                    </button>
+                </td>
+            </tr>
+            <tr class="collapse task-content" id="collapseExample2">
+                <td colspan="6" class="well">
+                    Some description
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6">
+                    <label>
+                        <input type="checkbox">
+                        Archived
+                    </label>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="modal fade new-task-modal" tabindex="-1" role="dialog" aria-labelledby="new-task">
+            <div class="modal-dialog modal-sm">
+                <form id="task-data" name="task-data" action="" class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">New task</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" class="form-control" rows="3"></textarea>
+                        <label for="priority">Priority</label>
+                        <select name="priority" id="priority" class="form-control selectpicker">
+                            <option data-icon="glyphicon-circle-arrow-down" value="TaskPriorities.LOW">
+                                Low
+                            </option>
+                            <option data-icon="glyphicon-circle-arrow-right" value="TaskPriorities.MEDIUM" selected>
+                                Medium
+                            </option>
+                            <option data-icon="glyphicon-circle-arrow-up" value="TaskPriorities.HIGH">High</option>
+
+                        </select>
+                        <label for="datetimepicker">Deadline</label>
+                        <input id="datetimepicker" name="deadline" class="form-control" type="text" value="" readonly>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="row"></footer>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -22,7 +240,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
+<script src="./app/src/js/lib/bootstrap-datetimepicker.min.js"></script>
 
 <script src="./app/src/js/index.js"></script>
 <script src="./app/src/js/constants/consts.js"></script>
