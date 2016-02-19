@@ -4,56 +4,110 @@
 var TaskListView = Backbone.View.extend({
 	el: $("#stm"),
 	model: TaskList,
-	statsTemplate: _.template($("#stats-template").html()),
-	events: {},
+	events: {
+		"change #archived-tasks": "toggleCompleted",
+		"submit #task-data": "processTask",
+		"show.bs.modal #task": "onTaskDialogOpened",
+		"hidden.bs.modal #remove-task": "onRemoveDialogClosed",
+		"click #proceed-removing": "proceedRemoving"
+	},
 	initialize: function () {
-		/*this.input = this.$("#new-todo");
-		this.allCheckbox = this.$("#toggle-all")[0];
+		this.initView();
 
 		this.listenTo(this.model, 'add', this.addOne);
-		this.listenTo(this.model, 'reset', this.addAll);
-		this.listenTo(this.model, 'all', this.render);
 
-		this.footer = this.$('footer');
-		this.main = $('#main');
-
-		Todos.fetch();*/
+		this.model.fetch();
 	},
-	render: function () {
-		/*var done = this.model.done().length;
-		var remaining = this.model.remaining().length;
+	initView: function () {
+		$("#datetimepicker").datetimepicker({
+			format: 'yyyy-mm-dd hh:ii',
+			todayHighlight: true,
+			autoclose: true
+		});
 
-		if (Todos.length) {
-			this.main.show();
-			this.footer.show();
-			this.footer.html(this.statsTemplate({done: done, remaining: remaining}));
-		} else {
-			this.main.hide();
-			this.footer.hide();
+		var removeErrClass = function () {
+			$(this).parent().removeClass("has-error");
+		};
+
+		$("input[name=title]").focus(removeErrClass);
+		$("textarea[name=content]").focus(removeErrClass);
+	},
+	addOne: function (todo) {
+		var view = new TaskView({model: todo});
+		this.$("#task-list").append(view.render().el);
+		todo.save();
+	},
+	processTask: function (e) {
+		e.preventDefault();
+
+		var data = $(e.currentTarget).serializeArray(),
+			taskObj = {},
+			task = null;
+		data.forEach(function (el) {
+			taskObj[el.name] = el.value;
+		});
+
+		if (!this.validateForm(taskObj.title, taskObj.content)) {
+			return false;
 		}
 
-		this.allCheckbox.checked = !remaining;*/
-	},
-	addOne: function(todo) {
-		/*var view = new TodoView({model: todo});
-		this.$("#todo-list").append(view.render().el);*/
-	},
-	addAll: function() {
-		/*this.model.each(this.addOne, this);*/
-	},
-	createOnEnter: function(e) {
-		/*if (e.keyCode != 13) return;
-		if (!this.input.val()) return;
+		if (taskObj.cid !== "") {
+			task = this.model.get({cid: taskObj.cid});
+			task.save(taskObj);
+		} else {
+			task = new Task(taskObj);
+			this.model.add(task);
+		}
 
-		Todos.create({title: this.input.val()});
-		this.input.val('');*/
+		this.resetForm();
+		$("#task").modal("hide");
+
+		return false;
 	},
-	clearCompleted: function() {
-		/*_.invoke(Todos.done(), 'destroy');
-		return false;*/
+	validateForm: function (title, content) {
+		var titleElParent = $("input[name=title]").parent(),
+			contentElParent = $("textarea[name=content]").parent(),
+			result = true;
+
+		if (title === "") {
+			titleElParent.addClass("has-error");
+			result = false;
+		} else {
+			titleElParent.removeClass("has-error");
+		}
+
+		if (content === "") {
+			contentElParent.addClass("has-error");
+			result = false;
+		} else {
+			contentElParent.removeClass("has-error");
+		}
+		return result;
 	},
-	toggleAllComplete: function () {
-		/*var done = this.allCheckbox.checked;
-		Todos.each(function (todo) { todo.save({'done': done}); });*/
+	onTaskDialogOpened: function (e) {
+		var titleSelector = "#task .modal-title",
+			action = $(e.relatedTarget).data("action");
+		if (action === STM.TaskActions.CREATE) {
+			$(titleSelector).text("New task");
+			this.resetForm();
+		} else {
+			$(titleSelector).text("Edit task");
+		}
+	},
+	resetForm: function () {
+		$("#task-data")[0].reset();
+		$("#task-data input[name=cid]").val("");
+	},
+	toggleCompleted: function (e) {
+		this.model.forEach(function (task) {
+			task.toggle(e.currentTarget.checked);
+		})
+	},
+	proceedRemoving: function () {
+		$("#remove-task").modal("hide");
+		STM.eventDispatcher.trigger(STM.Events.PROCEED_REMOVING);
+	},
+	onRemoveDialogClosed: function () {
+		STM.eventDispatcher.off(STM.Events.PROCEED_REMOVING);
 	}
 });

@@ -1,25 +1,55 @@
-body
+html, body
   width: 100%
   height: 100%
 
-  .header
-    text-align: center
+.header
+  text-align: center
+  margin-bottom: 20px
 
-  .content
-    .table
-      thead, tbody
-        th, td
-          text-align: center
-          vertical-align: middle
+.content
+  .table
+    thead, tbody
+      th, td
+        text-align: center
+        vertical-align: middle
+      th:first-child
+        max-width: 70px
+        text-overflow: ellipsis
+        overflow: hidden
+    tfoot
+      td
+        text-align: left
+    .task-content
+      td
+        text-align: left
+    tr.warning
+      .start, .reopen, .undo
+        display: none
+    tr.active
+      .reopen, .complete, .undo
+        display: none
+    tr.success
+      .start, .complete, .undo, .edit
+        display: none
+    tr.about-to-delete
+      td
+        animation: blink 1.5s infinite alternate
+      .start, .complete, .reopen, .edit, .remove
+        display: none
+      .undo
+        display: block
+    td.actions button
+      margin: 0 auto
 
-      tfoot
-        td
-          text-align: left
-      .task-content
-        td
-          text-align: left
+  .help-block
+    display: none
+  .has-error
+    .help-block
+      display: block
 
-.clear
-  clear: both
+@keyframes blink
+  100%
+    background-color: #FF7770
+
 textarea
   resize: none
