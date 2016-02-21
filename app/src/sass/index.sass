@@ -7,41 +7,55 @@ html, body
   margin-bottom: 20px
 
 .content
-  .table
-    thead, tbody
-      th, td
-        text-align: center
-        vertical-align: middle
-      th:first-child
-        max-width: 70px
-        text-overflow: ellipsis
-        overflow: hidden
-    tfoot
-      td
-        text-align: left
+  .tasks-header
+    font-weight: bold
+    border-bottom: 2px solid #DDDDDD
+    padding-bottom: 10px
+    text-align: center
+  .task
+    min-height: 51px
+    padding-top: 10px
+    text-align: center
+    border-bottom: 1px solid #DDDDDD
     .task-content
-      td
-        word-wrap: break-word
+      display: none
+      padding-left: 0
+      padding-right: 0
+      .content
         text-align: left
-        max-width: 100px
-    tr.warning
-      .start, .reopen, .undo
-        display: none
-    tr.active
-      .reopen, .complete, .undo
-        display: none
-    tr.success
-      .start, .complete, .undo, .edit
-        display: none
-    tr.about-to-delete
-      td
-        animation: blink 1.5s infinite alternate
-      .start, .complete, .reopen, .edit, .remove
-        display: none
-      .undo
-        display: block
-    td.actions button
-      margin: 0 auto
+        background: #d9edf7
+        word-wrap: break-word
+        margin: 0
+
+  .in-progress
+    background: #fcf8e3
+    .start,
+    .reopen,
+    .undo
+      display: none
+  .not-started
+    background: #f5f5f5
+    .reopen,
+    .complete,
+    .undo
+      display: none
+  .completed
+    background: #dff0d8
+    .start,
+    .complete,
+    .undo,
+    .edit
+      display: none
+  .about-to-delete
+    animation: blink 1.5s infinite alternate
+    .start,
+    .complete,
+    .reopen,
+    .edit,
+    .remove
+      display: none
+    .undo
+      display: inline-block
 
   .help-block
     display: none

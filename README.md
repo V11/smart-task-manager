@@ -14,3 +14,8 @@ In order to start developing run the following command from root directory of th
 ```
 npm run dev
 ```
+
+In order to build project and open it in browser run the following command from root directory of the project:
+```
+npm run showcase
+```

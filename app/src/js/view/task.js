@@ -2,10 +2,8 @@
  * Created by kurpav on 2/15/16.
  */
 var TaskView = Backbone.View.extend({
-	tagName: "tr",
-	className: "task",
+	className: "row task",
 	template: _.template($("#task-template").html()),
-	contentTemplate: _.template($("#content-template").html()),
 	timeoutToDelete: null,
 	showArchived: false,
 	TIMEOUT_TO_DELETE: 10 * 1000,
@@ -32,10 +30,7 @@ var TaskView = Backbone.View.extend({
 		this.$el.html(this.template(templateData));
 		this.clearStateClasses();
 		this.$el.addClass(this.getStateClassName());
-
-		if (this.$el.next().hasClass("task-content")) {
-			this.$el.next().remove();
-		}
+		this.content = this.$el.find(".task-content");
 
 		if (this.model.get("status") === STM.TaskStatuses.CLOSED
 			&& !this.showArchived) {
@@ -45,16 +40,16 @@ var TaskView = Backbone.View.extend({
 		return this;
 	},
 	clearStateClasses: function () {
-		this.$el.removeClass("active warning success");
+		this.$el.removeClass("not-started in-progress completed");
 	},
 	getStateClassName: function () {
-		var result = "active";
+		var result = "not-started";
 		switch (this.model.get("status")) {
 			case STM.TaskStatuses.PENDING:
-				result = "warning";
+				result = "in-progress";
 				break;
 			case STM.TaskStatuses.CLOSED:
-				result = "success";
+				result = "completed";
 				break;
 		}
 		return result;
@@ -90,12 +85,7 @@ var TaskView = Backbone.View.extend({
 		$('.selectpicker').selectpicker("val", modelJson.priority);
 	},
 	showContent: function () {
-		if (this.$el.next().hasClass("task-content")) {
-			this.$el.next().remove();
-		} else {
-			var content = this.contentTemplate({content: this.model.get("content")});
-			this.$el.after(content);
-		}
+		this.content.toggle();
 	},
 	addProceedListener: function() {
 		STM.eventDispatcher.on(STM.Events.PROCEED_REMOVING, this.aboutToDelete.bind(this));

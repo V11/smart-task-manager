@@ -11,7 +11,8 @@
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/smalot-bootstrap-datetimepicker/2.3.8/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/smalot-bootstrap-datetimepicker/2.3.8/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
     <!-- build:css css/index.css -->
     <link rel="stylesheet" type="text/css" href="app/src/css/index.css">
     <!-- /build -->
@@ -27,32 +28,26 @@
         </button>
     </header>
     <section id="stm" class="row content">
-        <table class="table text-center">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Priority</th>
-                <th class="hidden-xs">Status</th>
-                <th>Created at</th>
-                <th>Deadline</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody id="task-list">
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="6">
-                    <div class="checkbox">
-                        <label>
-                            <input id="archived-tasks" type="checkbox">
-                            Show archived tasks
-                        </label>
-                    </div>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
+        <div id="task-list" class="container">
+            <div class="row tasks-header">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Title</div>
+                <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">Priority</div>
+                <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs">Status</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Created at</div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Deadline</div>
+                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-4">Actions</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="checkbox">
+                    <label>
+                        <input id="archived-tasks" type="checkbox">
+                        Show archived tasks
+                    </label>
+                </div>
+            </div>
+        </div>
         <div id="remove-task" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="remove-task">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -120,53 +115,51 @@
 </div>
 
 <script type="text/template" id="task-template">
-    <td>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <a href="#" class="toggle">
             <span><%= title %></span>
         </a>
-    </td>
-    <td>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
         <span class="glyphicon glyphicon-circle-arrow-down"></span>
         <%= priority %>
-    </td>
-    <td class="hidden-xs"><%= status %></td>
-    <td><%= createdAt %></td>
-    <td><%= deadline %></td>
-    <td class="actions">
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs"><%= status %></div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><%= createdAt %></div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"><%= deadline %></div>
+    <div class="col-lg-4 col-md-4 col-sm-3 col-xs-4 text-center">
         <button class="btn btn-default start">
             <span class="glyphicon glyphicon-play-circle"></span>
-            <span class="hidden-xs">Start</span>
+            <span class="hidden-sm hidden-xs">Start</span>
         </button>
         <button class="btn btn-default complete">
             <span class="glyphicon glyphicon-ok"></span>
-            <span class="hidden-xs">Complete</span>
+            <span class="hidden-sm hidden-xs">Complete</span>
         </button>
         <button class="btn btn-default reopen">
             <span class="glyphicon glyphicon-repeat"></span>
-            <span class="hidden-xs">Reopen</span>
+            <span class="hidden-sm hidden-xs">Reopen</span>
         </button>
         <button class="btn btn-default undo">
             <span class="glyphicon glyphicon-circle-arrow-left"></span>
-            <span class="hidden-xs">Undo</span>
+            <span class="hidden-sm hidden-xs">Undo</span>
         </button>
         <button class="btn btn-default edit" data-toggle="modal"
                 data-target="#task" data-action="edit">
             <span class="glyphicon glyphicon-pencil"></span>
-            <span class="hidden-xs">Edit</span>
+            <span class="hidden-sm hidden-xs">Edit</span>
         </button>
         <button class="btn btn-default remove" data-toggle="modal"
                 data-target="#remove-task">
             <span class="glyphicon glyphicon-remove"></span>
-            <span class="hidden-xs">Remove</span>
+            <span class="hidden-sm hidden-xs">Remove</span>
         </button>
-    </td>
-</script>
-<script type="text/template" id="content-template">
-    <tr class="task-content">
-        <td colspan="6" class="well">
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 task-content wrapper">
+        <div class="well content">
             <%= content %>
-        </td>
-    </tr>
+        </div>
+    </div>
 </script>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
